@@ -29,13 +29,29 @@ class MainViewController: UIViewController {
         
         webView.rx.title
             .subscribe(onNext: {
-                print("title: \($0)")
+                let title = $0 ?? ""
+                super.navigationController?.navigationBar.topItem?.title = title
+                #if DEBUG
+                print("""
+----------------------------------------------------------------------------
+File: \(#file.components(separatedBy: "/").last ?? ""), Function: \(#function), Line: \(#line)
+title: \(title)
+----------------------------------------------------------------------------
+""")
+                #endif
             })
             .disposed(by: disposeBag)
         
-        webView.rx.url
+        webView.rx.url
             .subscribe(onNext: {
-                print("URL: \($0)")
+                #if DEBUG
+                print("""
+----------------------------------------------------------------------------
+File: \(#file.components(separatedBy: "/").last ?? ""), Function: \(#function), Line: \(#line)
+url: \($0)
+----------------------------------------------------------------------------
+""")
+                #endif
             })
             .disposed(by: disposeBag)
         
