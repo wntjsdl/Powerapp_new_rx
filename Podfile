@@ -4,10 +4,11 @@
 target 'Powerapp_new_rx' do
   # Comment the next line if you don't want to use dynamic frameworks
   use_frameworks!
-    pod "RxSwift"
-    pod "RxCocoa"
+    pod 'RxSwift'
+    pod 'RxCocoa'
+    pod 'Moya/RxSwift'
     pod 'RxWebKit'
-    pod "SnapKit"
+    pod 'SnapKit'
 
   # Pods for Powerapp_new_rx
 

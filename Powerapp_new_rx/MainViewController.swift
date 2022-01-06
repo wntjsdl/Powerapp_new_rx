@@ -11,6 +11,7 @@ import RxSwift
 import RxCocoa
 import RxWebKit
 import SnapKit
+import Moya
 
 class MainViewController: UIViewController {
     
@@ -20,6 +21,8 @@ class MainViewController: UIViewController {
     
     var testView: UIView!
     var testLabel: UILabel!
+    
+    var shopInfo: ShopInfoModel?
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -55,9 +58,32 @@ url: \($0)
             })
             .disposed(by: disposeBag)
         
+        
+        
         let url = URL(string: "http://www.naver.com/")
         let request = URLRequest(url: url!)
         webView.load(request)
+        
+        
+        
+        let provider = MoyaProvider<PowerApp>()
+        provider.request(.getShopInfo(admin_id: "cocenstore", type: "get_Setting_data", user_id: "OTk5OQ==")) { result in
+            switch result {
+            case let .success(moyaResponse):
+                let statusCode = moyaResponse.statusCode
+                print("statusCode: \(statusCode)")
+                do {
+//                    print("moyaResponse.mapString(): \(try moyaResponse.mapString())")
+                    self.shopInfo = try moyaResponse.map(ShopInfoModel.self)
+                    print("self.shopInfo: \(self.shopInfo)")
+                } catch (let err) {
+                    print(err.localizedDescription)
+                }
+                
+            case let .failure(error):
+                print("error")
+            }
+        }
         
 //        testView = UIView(frame: CGRect(x: 0, y: 0, width: view.bounds.width, height: view.bounds.height))
 //        testView.backgroundColor = .white
