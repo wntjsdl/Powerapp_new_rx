@@ -18,7 +18,7 @@
 		3E5B3E1627856FA100461F3D /* MainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E5B3E1527856FA100461F3D /* MainViewController.swift */; };
 		3EDE2EA5278686B800849C4C /* PowerApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3EDE2EA4278686B800849C4C /* PowerApp.swift */; };
 		3EDE2EAE2786BD5E00849C4C /* ShopInfoModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3EDE2EAD2786BD5E00849C4C /* ShopInfoModel.swift */; };
-		3EDE2F072786D49600849C4C /* ShopInfoViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3EDE2F062786D49600849C4C /* ShopInfoViewModel.swift */; };
+		3EDE2F072786D49600849C4C /* MainViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3EDE2F062786D49600849C4C /* MainViewModel.swift */; };
 		AD85B0647B635274496F5234 /* Pods_Powerapp_new_rxTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 35A59261EDBB2D22C0BB07C5 /* Pods_Powerapp_new_rxTests.framework */; };
 		D2F98ABB0CC1FDA2BEBC4B70 /* Pods_Powerapp_new_rx.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DF3695C627677A7084785EE9 /* Pods_Powerapp_new_rx.framework */; };
 /* End PBXBuildFile section */
@@ -59,7 +59,7 @@
 		3E5B3E1527856FA100461F3D /* MainViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainViewController.swift; sourceTree = "<group>"; };
 		3EDE2EA4278686B800849C4C /* PowerApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PowerApp.swift; sourceTree = "<group>"; };
 		3EDE2EAD2786BD5E00849C4C /* ShopInfoModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ShopInfoModel.swift; sourceTree = "<group>"; };
-		3EDE2F062786D49600849C4C /* ShopInfoViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShopInfoViewModel.swift; sourceTree = "<group>"; };
+		3EDE2F062786D49600849C4C /* MainViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainViewModel.swift; sourceTree = "<group>"; };
 		43B84AE794B267933A83BAF3 /* Pods-Powerapp_new_rx-Powerapp_new_rxUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Powerapp_new_rx-Powerapp_new_rxUITests.release.xcconfig"; path = "Target Support Files/Pods-Powerapp_new_rx-Powerapp_new_rxUITests/Pods-Powerapp_new_rx-Powerapp_new_rxUITests.release.xcconfig"; sourceTree = "<group>"; };
 		49CA367A2B6E972D581EBA5D /* Pods-Powerapp_new_rxTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Powerapp_new_rxTests.release.xcconfig"; path = "Target Support Files/Pods-Powerapp_new_rxTests/Pods-Powerapp_new_rxTests.release.xcconfig"; sourceTree = "<group>"; };
 		664BE491D943CDDFBF662DD2 /* Pods_Powerapp_new_rx_Powerapp_new_rxUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Powerapp_new_rx_Powerapp_new_rxUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -122,6 +122,7 @@
 		3E5B3DA42785384000461F3D /* Powerapp_new_rx */ = {
 			isa = PBXGroup;
 			children = (
+				3EDCA4CD278C0F0A006E6B3A /* View */,
 				3EDE2F052786D47F00849C4C /* ViewModel */,
 				3EDE2EAC2786BD1E00849C4C /* Model */,
 				3EDE2EA32786861E00849C4C /* Moya */,
@@ -131,7 +132,6 @@
 				3E5B3DB32785384300461F3D /* LaunchScreen.storyboard */,
 				3E5B3DB62785384300461F3D /* Info.plist */,
 				3E5B3DAE2785384000461F3D /* Powerapp_new_rx.xcdatamodeld */,
-				3E5B3E1527856FA100461F3D /* MainViewController.swift */,
 			);
 			path = Powerapp_new_rx;
 			sourceTree = "<group>";
@@ -154,6 +154,14 @@
 			path = Powerapp_new_rxUITests;
 			sourceTree = "<group>";
 		};
+		3EDCA4CD278C0F0A006E6B3A /* View */ = {
+			isa = PBXGroup;
+			children = (
+				3E5B3E1527856FA100461F3D /* MainViewController.swift */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
 		3EDE2EA32786861E00849C4C /* Moya */ = {
 			isa = PBXGroup;
 			children = (
@@ -173,7 +181,7 @@
 		3EDE2F052786D47F00849C4C /* ViewModel */ = {
 			isa = PBXGroup;
 			children = (
-				3EDE2F062786D49600849C4C /* ShopInfoViewModel.swift */,
+				3EDE2F062786D49600849C4C /* MainViewModel.swift */,
 			);
 			path = ViewModel;
 			sourceTree = "<group>";
@@ -461,7 +469,7 @@
 				3E5B3DA82785384000461F3D /* SceneDelegate.swift in Sources */,
 				3EDE2EAE2786BD5E00849C4C /* ShopInfoModel.swift in Sources */,
 				3EDE2EA5278686B800849C4C /* PowerApp.swift in Sources */,
-				3EDE2F072786D49600849C4C /* ShopInfoViewModel.swift in Sources */,
+				3EDE2F072786D49600849C4C /* MainViewModel.swift in Sources */,
 				3E5B3E1627856FA100461F3D /* MainViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

@@ -28,6 +28,7 @@ class MainViewController: UIViewController {
         super.viewDidLoad()
         
         webView = WKWebView(frame: self.view.bounds)
+        webView.allowsBackForwardNavigationGestures = true
         view.addSubview(webView)
         
         webView.rx.title
@@ -59,11 +60,10 @@ url: \($0)
             .disposed(by: disposeBag)
         
         
-        
-        let url = URL(string: "http://www.naver.com/")
+        let shopURL = Bundle.main.object(forInfoDictionaryKey: "ShopURL") as! String
+        let url = URL(string: "http://\(shopURL)")
         let request = URLRequest(url: url!)
         webView.load(request)
-        
         
         
         let provider = MoyaProvider<PowerApp>()
