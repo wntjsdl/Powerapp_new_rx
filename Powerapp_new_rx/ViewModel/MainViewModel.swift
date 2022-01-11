@@ -10,53 +10,27 @@ import RxSwift
 import RxCocoa
 import Moya
 
-protocol MainViewModelType {
-    associatedtype Dependency
-    associatedtype Input
-    associatedtype Output
+class MainViewModel: ViewModel {
     
-    var dependency: Dependency { get }
-    var disposeBag: DisposeBag { get set }
-    
-    var input: Input { get }
-    var output: Output { get }
-    
-    init(dependency: Dependency)
-}
-
-final class MainViewModel: MainViewModelType {
-    
-    struct Dependency {
-        var collectionViewArray: [String]?
-    }
+    let bag: DisposeBag = DisposeBag()
     
     struct Input {
-        var sideMenuToggle: AnyObserver<Bool>
+        var tapSideMenuBtn: Observable<Void>
     }
     
     struct Output {
         var isSideMenuOpen: Driver<Bool>
     }
     
-    let dependency: Dependency
-    var disposeBag: DisposeBag = DisposeBag()
-    let input: Input
-    let output: Output
-    
-    private let sideMenuToggle$: Observable<Bool>
-    
-    init(dependency: Dependency = Dependency(collectionViewArray: nil)) {
-        self.dependency = dependency
+    func transform(input: Input) -> Output {
+        let isSideMenuOpen = BehaviorRelay<Bool>(value: false)
         
-        let collectionViewArray$ = BehaviorSubject<[String]?>(value: nil)
-        let sideMenuToggle$ = Observable<Bool>
-        let isSideMenuOpen$ = Observable.just(sideMenuToggle$)
-            .asDriver(onErrorRecover: false)
+        input.tapSideMenuBtn.bind(onNext: { _ in
+            print(isSideMenuOpen.value)
+            isSideMenuOpen.accept(!isSideMenuOpen.value)
+        }).disposed(by: bag)
         
-        self.input = Input(sideMenuToggle: sideMenuToggle$.asObserver())
-        self.output = Output(isSideMenuOpen: isSideMenuOpen$)
-        
-        self.sideMenuToggle$ = sideMenuToggle$
+        return Output(isSideMenuOpen: isSideMenuOpen.asDriver(onErrorJustReturn: false))
     }
     
 }

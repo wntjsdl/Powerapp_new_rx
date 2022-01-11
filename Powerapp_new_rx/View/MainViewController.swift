@@ -13,16 +13,20 @@ import RxWebKit
 import SnapKit
 import Moya
 
-class MainViewController: UIViewController {
+final class MainViewController: UIViewController {
     
-    var disposeBag = DisposeBag()
     var webView: WKWebView!
 //    var url: String = "http://www.naver.com/"
     
     var testView: UIView!
-    var testLabel: UILabel!
+    var testBtn: UIButton!
     
+    let bag = DisposeBag()
     var shopInfo: ShopInfoModel?
+    var mainViewModel = MainViewModel()
+    
+    private lazy var input = MainViewModel.Input(tapSideMenuBtn: self.testBtn.rx.tap.asObservable())
+    private lazy var output = self.mainViewModel.transform(input: input)
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -44,7 +48,7 @@ title: \(title)
 """)
                 #endif
             })
-            .disposed(by: disposeBag)
+            .disposed(by: bag)
         
         webView.rx.url
             .subscribe(onNext: {
@@ -57,7 +61,7 @@ url: \($0)
 """)
                 #endif
             })
-            .disposed(by: disposeBag)
+            .disposed(by: bag)
         
         
         let shopURL = Bundle.main.object(forInfoDictionaryKey: "ShopURL") as! String
@@ -88,13 +92,22 @@ url: \($0)
 //        testView = UIView(frame: CGRect(x: 0, y: 0, width: view.bounds.width, height: view.bounds.height))
 //        testView.backgroundColor = .white
         
-//        testLabel = UILabel(frame: CGRect(x: 200, y: 200, width: 100, height: 30))
-//        testLabel.text = "test"
+        testBtn = UIButton(frame: CGRect(x: 50, y: 50, width: 100, height: 30))
+        testBtn.titleLabel?.text = "test"
         
 //        view.addSubview(testView)
-//        view.addSubview(testLabel)
+        view.addSubview(testBtn)
 
         // Do any additional setup after loading the view.
+        
+        bindViewModel()
+    }
+    
+    private func bindViewModel() {
+        output.isSideMenuOpen
+            .map { String($0) }
+            .drive(testBtn.rx.title())
+            .disposed(by: bag)
     }
 
     
